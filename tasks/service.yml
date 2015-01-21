@@ -1,0 +1,3 @@
+---
+- name: 'ensure {{ bind_service_name }} enabled'
+  service: 'name={{ bind_service_name }} enabled=yes state=started'

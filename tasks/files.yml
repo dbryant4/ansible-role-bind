@@ -1,0 +1,18 @@
+---
+- template: src=named.conf.options.j2 dest=/etc/bind/named.conf.options backup=yes
+  notify:
+    - 'restart bind'
+
+- template: src=named.conf.local.j2 dest=/etc/bind/named.conf.local backup=yes
+  notify:
+    - 'restart bind'
+
+- template: "src=db.tld.j2 dest=/etc/bind/db.{{ bind_top_level_domain }} backup=yes validate='/usr/sbin/named-checkzone {{ bind_top_level_domain }} %s'"
+  notify:
+    - 'restart bind'
+
+- template: "src=db.tld_rev.j2 dest=/etc/bind/db.{{ bind_top_level_domain }}_rev backup=yes validate='/usr/sbin/named-checkzone {{ bind_reverse_zone }}.in-addr.arpa %s'"
+  notify:
+    - 'restart bind'
+
+- file: path=/etc/bind owner=bind state=directory

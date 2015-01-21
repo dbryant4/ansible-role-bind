@@ -1,0 +1,10 @@
+---
+- include: packages.yml
+
+- include: generate_dnssec_key.yml
+  when: ansible_local is not defined or ansible_local.dnssec.key is not defined
+- set_fact: 'dnssec_key={{ ansible_local.dnssec.key }}'
+
+- include: files.yml
+
+- include: service.yml

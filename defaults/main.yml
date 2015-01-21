@@ -1,0 +1,10 @@
+---
+bind_service_name: 'bind9'
+bind_dns_forwarder: '8.8.8.8'
+bind_packages:
+  - bind9
+  - bind9-doc
+  - bind9utils
+  - dnsutils
+bind_top_level_domain: 'home'
+bind_reverse_zone: '101.168.192'
