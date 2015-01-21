@@ -8,3 +8,4 @@
 - file: path=/etc/ansible/facts.d state=directory recurse=yes
 
 - template: src=dnssec.fact.j2 dest=/etc/ansible/facts.d/dnssec.fact mode=0644
+- action: setup
