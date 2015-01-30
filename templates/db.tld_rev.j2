@@ -12,3 +12,8 @@ $TTL    604800
 ;
 @       IN      NS      localhost.
 
+{% if bind_static_records is defined and bind_static_records.PTR is defined %}
+{% for ip, host in bind_static_records.PTR|dictsort %}
+{{ ip }}      PTR       {{ host }}.{{ bind_top_level_domain}}.
+{% endfor %}
+{% endif %}

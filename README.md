@@ -25,6 +25,8 @@ should be able to manage any other Debian based system. When paired with the DHC
 - bind_reverse_zone - Reverse DNS zone. This is usually the subnet of your network, only with the octets reversed. For example: `0.168.192` for the 192.168.0.0/24 network.
 - bind_packages - packages to install to provide the Bind dns service. This should never change.
 - bind_service_name - Service name of bind. By default, `bind9` is used. This should not be changed.
+- bind_static_records - Defines the static DNS records which are set
+  statically.
 
 ### Changing Variable Values
 

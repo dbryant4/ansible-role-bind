@@ -14,3 +14,15 @@ $TTL    86400
 
 dns            IN      A       {{ ansible_default_ipv4.address }}
 {{ ansible_hostname }}       IN      A       {{ ansible_default_ipv4.address }}
+
+{% if bind_static_records is defined and bind_static_records.A is defined %}
+{% for host, ip in bind_static_records.A|dictsort %}
+{{ host }}      IN      A       {{ ip }}
+{% endfor %}
+{% endif %}
+
+{% if bind_static_records is defined and bind_static_records.CNAME is defined %}
+{% for alias, host in bind_static_records.CNAME|dictsort %}
+{{ alias }}      IN      CNAME       {{ host }}
+{% endfor %}
+{% endif %}
