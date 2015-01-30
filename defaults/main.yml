@@ -8,3 +8,13 @@ bind_packages:
   - dnsutils
 bind_top_level_domain: 'home'
 bind_reverse_zone: '101.168.192'
+bind_static_records:
+  A:
+    'host1': '192.168.101.101'
+    'host2': '192.168.101.102'
+  CNAME:
+    'alias1': 'host1'
+    'alias2': 'host2'
+  PTR:
+    '101': 'host1'
+    '102': 'host2'
