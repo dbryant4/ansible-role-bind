@@ -9,10 +9,12 @@
 
 - template: "src=db.tld.j2 dest=/etc/bind/db.{{ bind_top_level_domain }} backup=yes validate='/usr/sbin/named-checkzone {{ bind_top_level_domain }} %s'"
   notify:
+    - 'remove journal file'
     - 'restart bind'
 
 - template: "src=db.tld_rev.j2 dest=/etc/bind/db.{{ bind_top_level_domain }}_rev backup=yes validate='/usr/sbin/named-checkzone {{ bind_reverse_zone }}.in-addr.arpa %s'"
   notify:
+    - 'remove rev journal file'
     - 'restart bind'
 
 - file: path=/etc/bind owner=bind state=directory
